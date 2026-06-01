@@ -96,10 +96,10 @@ export function NavigationMenuAC() {
                 <DropdownMenuTrigger
                   className={cn(
                     "group inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 outline-none",
-                    "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-sky-500/50 dark:hover:bg-white/10",
+                    "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:hover:bg-white/10",
                     "data-[state=open]:bg-black/[0.08] dark:data-[state=open]:bg-white/15",
                     isActiveGroup
-                      ? "text-sky-600 dark:text-sky-400"
+                      ? "text-emerald-600 dark:text-emerald-400"
                       : "text-zinc-700 dark:text-zinc-200"
                   )}
                 >
@@ -124,16 +124,16 @@ export function NavigationMenuAC() {
                           to={item.href}
                           className={cn(
                             "group/item relative flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
-                            "focus:bg-sky-500/10 focus:text-sky-700 dark:focus:bg-sky-400/10 dark:focus:text-sky-300",
+                            "focus:bg-emerald-500/10 focus:text-emerald-700 dark:focus:bg-emerald-400/10 dark:focus:text-emerald-300",
                             isActive
-                              ? "bg-sky-500/10 text-sky-700 dark:bg-sky-400/10 dark:text-sky-300"
+                              ? "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300"
                               : "text-zinc-700 dark:text-zinc-200"
                           )}
                         >
                           {/* Windows 11 style selection indicator */}
                           <span
                             className={cn(
-                              "absolute top-1/2 left-0 h-5 w-1 -translate-y-1/2 rounded-full bg-sky-500 transition-all duration-200",
+                              "absolute top-1/2 left-0 h-5 w-1 -translate-y-1/2 rounded-full bg-emerald-500 transition-all duration-200",
                               isActive
                                 ? "opacity-100"
                                 : "opacity-0 group-hover/item:opacity-60"
@@ -161,7 +161,7 @@ export function NavigationMenuAC() {
           }}
           className={cn(
             "inline-flex shrink-0 items-center gap-2 rounded-xl border border-black/5 px-3 py-2 text-sm font-medium text-zinc-700 transition-all duration-200 outline-none",
-            "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-sky-500/50",
+            "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-emerald-500/50",
             "dark:border-white/10 dark:text-zinc-200 dark:hover:bg-white/10"
           )}
         >

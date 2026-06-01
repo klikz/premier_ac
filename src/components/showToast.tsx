@@ -13,7 +13,7 @@ export function ShowOKToast(text: string){
 export function ShowErrorToast(text: string) {
         toast(text, {
             style: {
-                backgroundColor: "rgba(255, 0, 0, 0.5)",
+                backgroundColor: "rgba(31, 41, 55, 0.9)",
                 color: "white",
                 justifyContent: 'center',
             },
