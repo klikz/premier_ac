@@ -1,22 +1,9 @@
 "use client"
 
-import * as React from "react"
 import { Link, useLocation } from "react-router-dom"
 import {
-  BarChart3,
-  Boxes,
-  CalendarRange,
   ChevronDown,
-  Cpu,
-  FactoryIcon,
-  FileText,
-  LayoutDashboard,
   LogOut,
-  Printer,
-  QrCode,
-  RefreshCcw,
-  Shield,
-  Users,
 } from "lucide-react"
 
 import {
