@@ -69,7 +69,7 @@ export function NavigationMenuAC() {
         {/* Menu groups — always on a single line; scrolls horizontally on small screens */}
         <div 
         className="flex min-w-0 flex-1 [scrollbar-width:none] items-center gap-1 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden"
-        style={{padding: 0}} 
+        style={{marginBottom: 10}}
         >
           
           {navGroups.map((group) => {
@@ -89,7 +89,7 @@ export function NavigationMenuAC() {
                   )}
                 >
                   <span>{group.label}</span>
-                  <ChevronDown className="size-3.5 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                  <ChevronDown style={{marginRight: 10}} className="size-3.5 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                   align="start"
@@ -112,6 +112,7 @@ export function NavigationMenuAC() {
                               ? "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300"
                               : "text-zinc-700 dark:text-zinc-200"
                           )}
+                          style={{padding: 5}}
                         >
                           {/* Windows 11 style selection indicator */}
                           <span
