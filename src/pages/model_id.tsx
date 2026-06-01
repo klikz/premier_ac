@@ -31,7 +31,7 @@ export default function ModelsIdPage() {
         toast(text, {
             // description: "Sunday, December 03, 2023 at 9:00 AM",
             style: {
-                backgroundColor: "rgba(255, 0, 0, 0.5)",
+                backgroundColor: "rgba(31, 41, 55, 0.9)",
                 color: "white",
                 justifyContent: 'center',
             },
