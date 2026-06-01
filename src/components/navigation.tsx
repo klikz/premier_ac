@@ -75,7 +75,7 @@ export function NavigationMenuAC() {
       <nav
         className={cn(
           "mx-auto flex w-full max-w-6xl items-center gap-2",
-          "rounded-2xl border border-black/5 bg-white/70 py-1.5 shadow-lg shadow-black/5 backdrop-blur-xl",
+          "rounded-2xl border border-black/5 bg-white/70 shadow-lg shadow-black/5 backdrop-blur-xl",
           "dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-black/40"
         )}
       >
@@ -93,7 +93,7 @@ export function NavigationMenuAC() {
               <DropdownMenu key={group.label}>
                 <DropdownMenuTrigger
                   className={cn(
-                    "group inline-flex shrink-0 items-center gap-2 rounded-xl py-2 text-sm font-medium transition-all duration-200 outline-none",
+                    "group inline-flex shrink-0 items-center gap-2 rounded-xl text-sm font-medium transition-all duration-200 outline-none",
                     "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:hover:bg-white/10",
                     "data-[state=open]:bg-black/[0.08] dark:data-[state=open]:bg-white/15",
                     isActiveGroup
@@ -155,7 +155,7 @@ export function NavigationMenuAC() {
             window.location.href = "/login"
           }}
           className={cn(
-            "inline-flex shrink-0 items-center gap-2 rounded-xl border border-black/5 px-3 py-2 text-sm font-medium text-zinc-700 transition-all duration-200 outline-none",
+            "inline-flex shrink-0 items-center gap-2 rounded-xl border border-black/5 text-sm font-medium text-zinc-700 transition-all duration-200 outline-none",
             "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-emerald-500/50",
             "dark:border-white/10 dark:text-zinc-200 dark:hover:bg-white/10"
           )}
