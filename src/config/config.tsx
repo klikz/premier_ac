@@ -1,8 +1,8 @@
 import axios from "axios";
 
 class StoreDatas{
-    server_ip: string = "";  //for build
-    // server_ip: string = "http://localhost:8001"  //for test
+    // Dev (`npm run dev`) targets the local API; production build (`npm run build`) uses same-origin.
+    server_ip: string = import.meta.env.DEV ? "http://localhost:8001" : "";
 
     accessToken: string = ""
     auth: boolean = false;
