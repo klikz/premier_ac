@@ -1,23 +1,7 @@
 "use client"
 
-import * as React from "react"
 import { Link, useLocation } from "react-router-dom"
-import {
-  BarChart3,
-  Boxes,
-  CalendarRange,
-  ChevronDown,
-  Cpu,
-  FactoryIcon,
-  FileText,
-  LayoutDashboard,
-  LogOut,
-  Printer,
-  QrCode,
-  RefreshCcw,
-  Shield,
-  Users,
-} from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 import {
   DropdownMenu,
@@ -31,42 +15,37 @@ import { Global_Data } from "@/config/config"
 type NavLink = {
   title: string
   href: string
-  icon: React.ComponentType<{ className?: string }>
 }
 
 type NavGroup = {
   label: string
-  icon: React.ComponentType<{ className?: string }>
   items: NavLink[]
 }
 
 const navGroups: NavGroup[] = [
   {
     label: "Admin",
-    icon: Shield,
-    items: [{ title: "Users", href: "/users", icon: Users }],
+    items: [{ title: "Users", href: "/users" }],
   },
   {
     label: "Lines",
-    icon: FactoryIcon,
     items: [
-      { title: "T1", href: "/t1", icon: FileText },
-      { title: "T2", href: "/t2", icon: FileText },
-      { title: "T3", href: "/t3", icon: FileText },
-      { title: "I1", href: "/i1", icon: FileText },
-      { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+      { title: "T1", href: "/t1" },
+      { title: "T2", href: "/t2" },
+      { title: "T3", href: "/t3" },
+      { title: "I1", href: "/i1" },
+      { title: "Dashboard", href: "/dashboard" },
     ],
   },
   {
     label: "Texnolog",
-    icon: Cpu,
     items: [
-      { title: "Models", href: "/models", icon: Boxes },
-      { title: "GS Code", href: "/gscode", icon: QrCode },
-      { title: "Printers", href: "/printers", icon: Printer },
-      { title: "Re Print", href: "/reprint", icon: RefreshCcw },
-      { title: "Report", href: "/report", icon: BarChart3 },
-      { title: "Reja", href: "/reja", icon: CalendarRange },
+      { title: "Models", href: "/models" },
+      { title: "GS Code", href: "/gscode" },
+      { title: "Printers", href: "/printers" },
+      { title: "Re Print", href: "/reprint" },
+      { title: "Report", href: "/report" },
+      { title: "Reja", href: "/reja" },
     ],
   },
 ]
@@ -87,7 +66,6 @@ export function NavigationMenuAC() {
         {/* Menu groups — always on a single line; scrolls horizontally on small screens */}
         <div className="flex min-w-0 flex-1 [scrollbar-width:none] items-center gap-1 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden">
           {navGroups.map((group) => {
-            const Icon = group.icon
             const isActiveGroup = group.items.some(
               (item) => item.href === location.pathname
             )
@@ -103,7 +81,6 @@ export function NavigationMenuAC() {
                       : "text-zinc-700 dark:text-zinc-200"
                   )}
                 >
-                  <Icon className="size-4 shrink-0" />
                   <span>{group.label}</span>
                   <ChevronDown className="size-3.5 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                 </DropdownMenuTrigger>
@@ -116,7 +93,6 @@ export function NavigationMenuAC() {
                   )}
                 >
                   {group.items.map((item) => {
-                    const ItemIcon = item.icon
                     const isActive = item.href === location.pathname
                     return (
                       <DropdownMenuItem key={item.href} asChild>
@@ -139,7 +115,6 @@ export function NavigationMenuAC() {
                                 : "opacity-0 group-hover/item:opacity-60"
                             )}
                           />
-                          <ItemIcon className="size-4 shrink-0 opacity-80" />
                           <span>{item.title}</span>
                         </Link>
                       </DropdownMenuItem>
@@ -165,7 +140,6 @@ export function NavigationMenuAC() {
             "dark:border-white/10 dark:text-zinc-200 dark:hover:bg-white/10"
           )}
         >
-          <LogOut className="size-4 shrink-0" />
           {login ? (
             <span className="hidden max-w-32 truncate sm:inline">{login}</span>
           ) : null}
