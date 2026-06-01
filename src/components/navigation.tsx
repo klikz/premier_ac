@@ -1,144 +1,177 @@
 "use client"
 
 import * as React from "react"
-import { Link } from "react-router-dom"
-
-// import { toast } from "sonner"
+import { Link, useLocation } from "react-router-dom"
+import {
+  BarChart3,
+  Boxes,
+  CalendarRange,
+  ChevronDown,
+  Cpu,
+  FactoryIcon,
+  FileText,
+  LayoutDashboard,
+  LogOut,
+  Printer,
+  QrCode,
+  RefreshCcw,
+  Shield,
+  Users,
+} from "lucide-react"
 
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger
-} from "@/components/ui/navigation-menu"
-import { Button } from "./ui/button"
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { cn } from "@/lib/utils"
 import { Global_Data } from "@/config/config"
 
-// const components: { title: string; href: string; description: string }[] = [
-//   {
-//     title: "Alert Dialog",
-//     href: "/docs/primitives/alert-dialog",
-//     description:
-//       "A modal dialog that interrupts the user with important content and expects a response.",
-//   },
-//   {
-//     title: "Hover Card",
-//     href: "/docs/primitives/hover-card",
-//     description:
-//       "For sighted users to preview content available behind a link.",
-//   },
-//   {
-//     title: "Progress",
-//     href: "/docs/primitives/progress",
-//     description:
-//       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-//   },
-//   {
-//     title: "Scroll-area",
-//     href: "/docs/primitives/scroll-area",
-//     description: "Visually or semantically separates content.",
-//   },
-//   {
-//     title: "Tabs",
-//     href: "/docs/primitives/tabs",
-//     description:
-//       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-//   },
-//   {
-//     title: "Tooltip",
-//     href: "/docs/primitives/tooltip",
-//     description:
-//       "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-//   },
-// ]
+type NavLink = {
+  title: string
+  href: string
+  icon: React.ComponentType<{ className?: string }>
+}
+
+type NavGroup = {
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+  items: NavLink[]
+}
+
+const navGroups: NavGroup[] = [
+  {
+    label: "Admin",
+    icon: Shield,
+    items: [{ title: "Users", href: "/users", icon: Users }],
+  },
+  {
+    label: "Lines",
+    icon: FactoryIcon,
+    items: [
+      { title: "T1", href: "/t1", icon: FileText },
+      { title: "T2", href: "/t2", icon: FileText },
+      { title: "T3", href: "/t3", icon: FileText },
+      { title: "I1", href: "/i1", icon: FileText },
+      { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    ],
+  },
+  {
+    label: "Texnolog",
+    icon: Cpu,
+    items: [
+      { title: "Models", href: "/models", icon: Boxes },
+      { title: "GS Code", href: "/gscode", icon: QrCode },
+      { title: "Printers", href: "/printers", icon: Printer },
+      { title: "Re Print", href: "/reprint", icon: RefreshCcw },
+      { title: "Report", href: "/report", icon: BarChart3 },
+      { title: "Reja", href: "/reja", icon: CalendarRange },
+    ],
+  },
+]
 
 export function NavigationMenuAC() {
-  const login = Global_Data.getLogin();
+  const login = Global_Data.getLogin()
+  const location = useLocation()
+
   return (
-    <div className="flex justify-between items-center w-full">
-    <NavigationMenu  style={{}}>
-      <NavigationMenuList  style={{}}>
-        <NavigationMenuItem style={{}}>
-          <NavigationMenuTrigger style={{}}>Admin</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem style={{}} href="/users" title="Users" />
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-         <NavigationMenuItem style={{}}>
-          <NavigationMenuTrigger style={{}}>Lines</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem style={{}} href="/t1" title="T1" />
-            </ul>
-            <ul className="w-96">
-              <ListItem style={{}} href="/t2" title="T2" />
-            </ul>
-            <ul className="w-96">
-              <ListItem style={{}} href="/t3" title="T3" />
-            </ul>
-            <ul className="w-96">
-              <ListItem style={{}} href="/i1" title="I1" />
-            </ul>
-            <ul className="w-96">
-              <ListItem style={{}} href="/dashboard" title="Dashboard" />
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-                 <NavigationMenuItem style={{}}>
-          <NavigationMenuTrigger style={{}}>Texnolog</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem style={{}} href="/models" title="Models" />
-              <ListItem style={{}} href="/gscode" title="GS Code" />
-              <ListItem style={{}} href="/printers" title="Printers" />
-              <ListItem style={{}} href="/reprint" title="Re Print" />
-              <ListItem style={{}} href="/report" title="Report" />
-              <ListItem style={{}} href="/reja" title="Reja" />
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
-    <Button variant="ghost"
-        onClick={async () => {
-          localStorage.removeItem("token")
-          await Global_Data.clearUserData()
-          window.location.href = "/login"
-        }}
-        className="px-4 py-2 rounded-lg border hover:bg-gray-100"
+    <header className="sticky top-0 z-50 w-full px-2 py-2 sm:px-4">
+      <nav
+        className={cn(
+          "mx-auto flex w-full max-w-6xl items-center gap-2",
+          "rounded-2xl border border-black/5 bg-white/70 px-2 py-1.5 shadow-lg shadow-black/5 backdrop-blur-xl",
+          "dark:border-white/10 dark:bg-zinc-900/70 dark:shadow-black/40"
+        )}
       >
-        {login} Logout
-      </Button>
-    </div>
+        {/* Menu groups — always on a single line; scrolls horizontally on small screens */}
+        <div className="flex min-w-0 flex-1 [scrollbar-width:none] items-center gap-1 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden">
+          {navGroups.map((group) => {
+            const Icon = group.icon
+            const isActiveGroup = group.items.some(
+              (item) => item.href === location.pathname
+            )
+            return (
+              <DropdownMenu key={group.label}>
+                <DropdownMenuTrigger
+                  className={cn(
+                    "group inline-flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 outline-none",
+                    "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-sky-500/50 dark:hover:bg-white/10",
+                    "data-[state=open]:bg-black/[0.08] dark:data-[state=open]:bg-white/15",
+                    isActiveGroup
+                      ? "text-sky-600 dark:text-sky-400"
+                      : "text-zinc-700 dark:text-zinc-200"
+                  )}
+                >
+                  <Icon className="size-4 shrink-0" />
+                  <span>{group.label}</span>
+                  <ChevronDown className="size-3.5 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="start"
+                  sideOffset={10}
+                  className={cn(
+                    "min-w-56 rounded-2xl border border-black/5 bg-white/80 p-1.5 shadow-xl shadow-black/10 backdrop-blur-2xl",
+                    "dark:border-white/10 dark:bg-zinc-900/85 dark:shadow-black/50"
+                  )}
+                >
+                  {group.items.map((item) => {
+                    const ItemIcon = item.icon
+                    const isActive = item.href === location.pathname
+                    return (
+                      <DropdownMenuItem key={item.href} asChild>
+                        <Link
+                          to={item.href}
+                          className={cn(
+                            "group/item relative flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
+                            "focus:bg-sky-500/10 focus:text-sky-700 dark:focus:bg-sky-400/10 dark:focus:text-sky-300",
+                            isActive
+                              ? "bg-sky-500/10 text-sky-700 dark:bg-sky-400/10 dark:text-sky-300"
+                              : "text-zinc-700 dark:text-zinc-200"
+                          )}
+                        >
+                          {/* Windows 11 style selection indicator */}
+                          <span
+                            className={cn(
+                              "absolute top-1/2 left-0 h-5 w-1 -translate-y-1/2 rounded-full bg-sky-500 transition-all duration-200",
+                              isActive
+                                ? "opacity-100"
+                                : "opacity-0 group-hover/item:opacity-60"
+                            )}
+                          />
+                          <ItemIcon className="size-4 shrink-0 opacity-80" />
+                          <span>{item.title}</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    )
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )
+          })}
+        </div>
+
+        {/* Logout */}
+        <button
+          type="button"
+          onClick={async () => {
+            localStorage.removeItem("token")
+            await Global_Data.clearUserData()
+            window.location.href = "/login"
+          }}
+          className={cn(
+            "inline-flex shrink-0 items-center gap-2 rounded-xl border border-black/5 px-3 py-2 text-sm font-medium text-zinc-700 transition-all duration-200 outline-none",
+            "hover:bg-black/[0.06] focus-visible:ring-2 focus-visible:ring-sky-500/50",
+            "dark:border-white/10 dark:text-zinc-200 dark:hover:bg-white/10"
+          )}
+        >
+          <LogOut className="size-4 shrink-0" />
+          {login ? (
+            <span className="hidden max-w-32 truncate sm:inline">{login}</span>
+          ) : null}
+          <span>Logout</span>
+        </button>
+      </nav>
+    </header>
   )
 }
-
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link to={href}>
-          <div >
-            <div >{title}</div>
-            <div >{children}</div>
-          </div>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-}
-
-
-          // <div className="flex flex-col gap-1 text-sm">
-          //   <div className="leading-none font-medium">{title}</div>
-          //   <div className="line-clamp-2 text-muted-foreground">{children}</div>
-          // </div>
